@@ -1,6 +1,6 @@
 <?php
 //Ueberprueft ob eine uebergebene Zahl eine natürliche Zahl ist
-function isNatuerlicheZahl($zahl) {
+function isNatuerlicheZahl(int $zahl):bool {
     if(is_int($zahl) && $zahl > 0) {
         return true;
     }
@@ -27,7 +27,7 @@ function primeArray() {
     $primeTillNumber = $_POST['zahlBis'];
     //echo $primeTillNumber;
     for ($i = 0; $i <= $primeTillNumber;$i++) {
-        if(isNatuerlicheZahl($i)) {
+        if(isNatuerlicheZahl($primeTillNumber) && isset($primeTillNumber)) {
             if(isPrime($i)){
                 array_push($array, $i);
                 //$array[$counter] = $i;
@@ -42,14 +42,13 @@ function primeArray() {
 //Sucht n zufällige Primzahlen
 function maxPrimeArray(){
     $array[] = array();
-    $primeTillNumber = $_POST['zahlBis'];
     $counter = $_POST['maxPrim'];
     //
     $i = 0;
     while ($i < $counter) {
         $randNumber = rand();
         //echo "$randNumber <br>";
-        if(isNatuerlicheZahl($randNumber)) {
+        if(isNatuerlicheZahl($randNumber) && isset($counter)) {
             if(isPrime($randNumber)){
                 array_push($array, $randNumber);
                 //$array[$counter] = $i;
@@ -64,19 +63,19 @@ function maxPrimeArray(){
 }
 
 ?>
-Folgende Primzahlen wurden gefunden: <?php maxPrimeArray() ?>
 
-<form action="prime.php" method="post" >
+
+<form>
 
 <p>Primzahlen bis :
-<input type="text" name="zahlBis">
+        <input type="text" name="zahlBis">
+        <input type="submit" value="Primzahlen bis" formaction="prime.php" formmethod="post">
+        Folgende Primzahlen bis wurden gefunden: <?php primeArray() ?>
 </p>
     <p>max zufällige Primzahlen:
         <input type="text" name="maxPrim">
-    </p>
-
-<p>
-<input type="submit" value="absenden">
+        <input type="submit" value="Primzahlen max" formaction="prime.php" formmethod="post">
+        Folgende Primzahlen wurden gefunden: <?php maxPrimeArray() ?>
 </p>
 
 </form>
