@@ -1,10 +1,11 @@
 <?php
 //Ueberprueft ob eine uebergebene Zahl eine natürliche Zahl ist
-function isNatuerlicheZahl(int $zahl):bool {
+function isNatuerlicheZahl($zahl) {
     if(is_int($zahl) && $zahl > 0) {
         return true;
     }
-        return false;
+    echo "Natürliche Zahl eingen";
+    return false;
 }
 
 //ueberprueft ob ein gegebene Zahl eine Primzahl ist
@@ -25,8 +26,10 @@ function isPrime ($zahl) {
 function primeArray() {
     $array[] = array();
     $primeTillNumber = $_POST['zahlBis'];
-    //echo $primeTillNumber;
+    if(isset($primeTillNumber)) //
     for ($i = 0; $i <= $primeTillNumber;$i++) {
+        // Bug mit Schleife: text wird mehrfach angezeigt
+
         if(isNatuerlicheZahl($primeTillNumber) && isset($primeTillNumber)) {
             if(isPrime($i)){
                 array_push($array, $i);
