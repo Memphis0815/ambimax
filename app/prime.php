@@ -1,36 +1,38 @@
 <?php
+declare(strict_types = 1);
+
 //Ueberprueft ob eine uebergebene Zahl eine natürliche Zahl ist
-function isNatuerlicheZahl($zahl) {
+function isNatuerlicheZahl(int $zahl): bool{
     if(is_int($zahl) && $zahl > 0) {
         return true;
     }
-    echo "Natürliche Zahl eingen";
+    //echo "Natürliche Zahl eingen";
     return false;
 }
 
 //ueberprueft ob ein gegebene Zahl eine Primzahl ist
-function isPrime ($zahl) {
-    $bprime = True;
+function isPrime ($zahl): bool {
+    $isPrime = true;
     $k = 2;
-    while ($k*$k <= $zahl && $bprime == true) {
+    while ($k*$k <= $zahl && $isPrime == true) {
         $temp = $zahl % $k;
         if($temp == 0) {
-            $bprime = false;
+            $isPrime = false;
         }
         $k = $k +1;
     }
-    return $bprime;
+    return $isPrime;
 }
 
 //Such Primzahlen aufsteigend von 0 bis zu einer Grenze
 function primeArray() {
     $array[] = array();
-    $primeTillNumber = $_POST['zahlBis'];
-    if(isset($primeTillNumber)) //
+    $primeTillNumber = (int)$_POST['zahlBis'];
+    //if(isset($primeTillNumber)) //
     for ($i = 0; $i <= $primeTillNumber;$i++) {
         // Bug mit Schleife: text wird mehrfach angezeigt
 
-        if(isNatuerlicheZahl($primeTillNumber) && isset($primeTillNumber)) {
+        if(isNatuerlicheZahl($i)) {
             if(isPrime($i)){
                 array_push($array, $i);
                 //$array[$counter] = $i;
@@ -71,12 +73,12 @@ function maxPrimeArray(){
 <form>
 
 <p>Primzahlen bis :
-        <input type="text" name="zahlBis">
+        <input type="number" name="zahlBis">
         <input type="submit" value="Primzahlen bis" formaction="prime.php" formmethod="post">
         Folgende Primzahlen bis wurden gefunden: <?php primeArray() ?>
 </p>
     <p>max zufällige Primzahlen:
-        <input type="text" name="maxPrim">
+        <input type="number" name="maxPrim">
         <input type="submit" value="Primzahlen max" formaction="prime.php" formmethod="post">
         Folgende Primzahlen wurden gefunden: <?php maxPrimeArray() ?>
 </p>
