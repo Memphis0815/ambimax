@@ -27,7 +27,7 @@ function isPrime ($zahl): bool {
 //Such Primzahlen aufsteigend von 0 bis zu einer Grenze
 function primeArray() {
     $array[] = array();
-    $primeTillNumber = (int)$_POST['zahlBis'];
+    $primeTillNumber = $_POST['zahlBis'];
     //if(isset($primeTillNumber)) //
     for ($i = 0; $i <= $primeTillNumber;$i++) {
         // Bug mit Schleife: text wird mehrfach angezeigt
@@ -41,7 +41,8 @@ function primeArray() {
         }
     }
     foreach($array AS $primZahl) {
-        echo "$primZahl <br>";
+        print_r($primZahl);
+        echo '<br>';
     }
 }
 //Sucht n zufällige Primzahlen
@@ -63,7 +64,8 @@ function maxPrimeArray(){
         }
     }
     foreach($array AS $primZahl) {
-        echo "$primZahl <br>";
+        print_r($primZahl);
+        echo '<br>';
     }
 }
 

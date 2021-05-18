@@ -49,3 +49,25 @@ services:
       - ./app:/var/www
     networks:
       - web-network
+
+  mysql:
+    image: mariadb
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql_root_pass
+      MYSQL_DATABASE: db_name
+      MYSQL_USER: user_name
+      MYSQL_PASSWORD: user_pass
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8000:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    depends_on:
+      - mariadb
+
